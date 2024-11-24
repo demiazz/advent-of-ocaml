@@ -8,25 +8,6 @@ let test_case_of (year, day, part, expected) =
   let run () = Alcotest.(check string) "are equal" expected (handle ()) in
   (name, [ Alcotest.test_case "OK" `Quick run ])
 
-(* let available =
-   let days_of year =
-     let to_tuple day = (year, day) in
-     Solver.days ~year |> List.map to_tuple
-   in
-   let parts_of (year, day) =
-     let parts = Solver.parts ~year ~day in
-     (year, day, parts)
-   in
-   let keys_of (year, day, parts) =
-     match parts with
-     | true, true -> [ (year, day, 1); (year, day, 2) ]
-     | true, false -> [ (year, day, 1) ]
-     | false, true -> [ (year, day, 2) ]
-     | false, false -> []
-   in
-   Solver.years |> List.map days_of |> List.flatten |> List.map parts_of
-   |> List.map keys_of |> List.flatten *)
-
 let answers = [ (2015, 1, 1, "232"); (2015, 1, 2, "1783") ]
 let test_cases = answers |> List.map test_case_of
 
