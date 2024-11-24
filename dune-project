@@ -1,5 +1,7 @@
 (lang dune 3.16)
 
+(using melange 0.1)
+
 (name advent-of-ocaml)
 
 (generate_opam_files true)
@@ -45,5 +47,4 @@
     :with-test
     (>= 1.8.0)))
   (odoc :with-doc))
- (tags
-  (topics "to describe" your project)))
+ (tags ("advent-of-code")))

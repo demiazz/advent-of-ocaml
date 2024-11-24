@@ -5,7 +5,7 @@ description: "Solutions of tasks from Advent of Code events."
 maintainer: ["demiazz.py@gmail.com"]
 authors: ["Alexey Plutalov"]
 license: "ISC"
-tags: ["topics" "to describe" "your" "project"]
+tags: ["advent-of-code"]
 homepage: "https://github.com/demiazz/advent-of-ocaml"
 doc: "https://github.com/demiazz/advent-of-ocaml#readme"
 bug-reports: "https://github.com/demiazz/advent-of-ocaml/issues"
