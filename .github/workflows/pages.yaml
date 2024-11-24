@@ -1,0 +1,79 @@
+name: Pages
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+concurrency:
+  group: 'pages'
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.repository == 'demiazz/advent-of-ocaml'
+
+    name: Advent of OCaml
+
+    runs-on: ubuntu-latest
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install OCaml
+        uses: ocaml/setup-ocaml@v3
+        with:
+          ocaml-compiler: 5.2.0
+          dune-cache: true
+
+      - name: Restore OPAM cache
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.opam
+            ./.opam
+          key: ${{ runner.os }}-opam-${{ hashFiles('**/*.opam.locked') }}
+          restore-keys: |
+            ${{ runner.os }}-opam-
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          cache: pnpm
+          node-version-file: .tool-versions
+
+      - name: Install dependencies
+        shell: bash
+        run: make init-ci
+
+      - name: Run tests
+        run: make test
+
+      - name: Build
+        run: make build
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
