@@ -1,0 +1,25 @@
+{
+  "name": "advent-of-ocaml",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Solutions of Advent of Code on OCaml",
+  "main": "index.js",
+  "keywords": [
+    "advent of code",
+    "zig",
+    "wasm"
+  ],
+  "author": "Alexey Plutalov",
+  "license": "ISC",
+  "packageManager": "pnpm@9.12.3",
+  "dependencies": {
+    "@fontsource/source-code-pro": "^5.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "prettier": "^3.3.3",
+    "vite": "^5.4.11"
+  }
+}

@@ -1,0 +1,66 @@
+.root {
+  color: white;
+}
+
+.root {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: repeat(4, auto);
+  grid-template-areas: "title years" "subtitle days" "form form" "results results";
+  column-gap: 20px;
+}
+
+.title {
+  grid-area: title;
+  color: var(--interactive--highlight);
+  text-shadow:
+    0 0 2px var(--interactive--highlight),
+    0 0 5px var(--interactive--highlight);
+}
+
+.years {
+  grid-area: years;
+}
+
+.subTitle {
+  grid-area: subtitle;
+  color: var(--interactive--highlight);
+  text-align: right;
+  text-shadow:
+    0 0 2px var(--interactive--highlight),
+    0 0 5px var(--interactive--highlight);
+}
+
+.subTitleDelimiter {
+  color: var(--interactive--inactive);
+  text-align: right;
+  text-shadow:
+    0 0 2px var(--interactive--inactive),
+    0 0 5px var(--interactive--inactive);
+}
+
+.days {
+  grid-area: days;
+}
+
+.form {
+  grid-area: form;
+  margin-top: var(--line-height);
+}
+
+.results {
+  grid-area: results;
+  margin-top: var(--line-height);
+  color: var(--text--primary);
+}
+
+.result {
+}
+
+.ok {
+  color: var(--accent);
+}
+
+.fail {
+  color: var(--error);
+}

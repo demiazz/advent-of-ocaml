@@ -1,0 +1,16 @@
+.label {
+  color: var(--text--primary);
+  text-shadow: 0 0 5px var(--text--primary);
+}
+
+.ok .answer {
+  color: var(--accent);
+
+  text-shadow: 0 0 5px var(--accent);
+}
+
+.fail .answer {
+  color: var(--error);
+
+  text-shadow: 0 0 5px var(--error);
+}

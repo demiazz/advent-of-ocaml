@@ -1,0 +1,33 @@
+.root {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  column-gap: 1ch;
+}
+
+.input {
+  display: none;
+}
+
+.item {
+  color: var(--interactive--primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.item:hover,
+.item:focus {
+  color: var(--interactive--focus);
+}
+
+.item:has(.input:checked) {
+  color: var(--interactive--focus);
+  text-shadow:
+    0 0 2px var(--interactive--focus),
+    0 0 5px var(--interactive--focus);
+}
+
+.item:has(.input:disabled) {
+  color: var(--interactive--inactive);
+  cursor: default;
+}

@@ -1,0 +1,10 @@
+(dirs :standard \ node_modules)
+
+(melange.emit
+ (target output)
+ (libraries reader reason-react solver)
+ (preprocess
+  (pps melange.ppx reason-react-ppx))
+ (runtime_deps
+  (glob_files *.css))
+ (module_systems es6))

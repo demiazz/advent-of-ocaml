@@ -1,0 +1,37 @@
+.root {
+  width: 45em;
+}
+
+.input {
+  width: 100%;
+  background: var(--background--input);
+  font-size: inherit;
+  color: var(--text--primary);
+  resize: none;
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 1ch;
+  margin-top: 1.2em;
+}
+
+.action {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: inherit;
+  color: var(--interactive--primary);
+  cursor: pointer;
+}
+
+.action:hover {
+  color: var(--interactive--focus);
+}
+
+.action:disabled {
+  color: var(--interactive--inactive);
+  cursor: default;
+}

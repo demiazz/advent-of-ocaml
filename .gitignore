@@ -1,1 +1,20 @@
-_build
+# Node.js
+
+dist
+node_modules
+
+# Opam
+
+_opam/
+
+# Dune
+
+_build/
+
+# macOS
+
+.DS_Store
+
+# Tests
+
+input.txt
