@@ -1,8 +1,8 @@
 let parse input =
-  let to_int char =
-    match char with '(' -> 1 | ')' -> -1 | _ -> raise Parser.Invalid_input
+  let process char =
+    match char with '(' -> Some 1 | ')' -> Some (-1) | _ -> None
   in
-  input |> Reader.chars_of |> Seq.map to_int
+  input |> Parse.chars_of process
 
 let part_one input = input |> parse |> Seq.fold_left ( + ) 0 |> string_of_int
 

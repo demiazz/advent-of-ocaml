@@ -1,3 +1,4 @@
 (library
- (name parser)
+ (name parse)
+ (libraries reader)
  (modes melange native))
