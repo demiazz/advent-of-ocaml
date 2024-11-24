@@ -1,0 +1,5 @@
+(test
+ (name test_solver)
+ (deps
+  (glob_files_rec resources/*.txt))
+ (libraries alcotest reader solver))
