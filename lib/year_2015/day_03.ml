@@ -1,12 +1,4 @@
-module Int_point_2d = struct
-  type t = int * int
-
-  let compare = Stdlib.compare
-  let add (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
-  let sub (x1, y1) (x2, y2) = (x1 + x2, y1 + y2)
-end
-
-module Point_set = Set.Make (Int_point_2d)
+module Point_set = Set.Make (Geometry.Int_point_2d)
 
 let parse input =
   let to_point char =
@@ -27,23 +19,25 @@ let visit input move =
   string_of_int visited
 
 let part_one input =
+  let open Geometry.Int_point_2d in
   let santa = ref (0, 0) in
   let move set direction =
-    let next = Int_point_2d.add !santa direction in
+    let next = !santa + direction in
     santa := next;
-    set |> Point_set.add next
+    Point_set.add next set
   in
   visit input move
 
 let part_two input =
+  let open Geometry.Int_point_2d in
   let who = ref false in
   let santa = ref (0, 0) in
   let robo = ref (0, 0) in
   let move set direction =
     let position = if !who then santa else robo in
-    let next = Int_point_2d.add !position direction in
+    let next = !position + direction in
     position := next;
     who := not !who;
-    set |> Point_set.add next
+    Point_set.add next set
   in
   visit input move
