@@ -1,13 +1,8 @@
 let parse input =
-  let to_chunk line =
-    match String.split_on_char 'x' line with
-    | [ l; w; h ] -> Some (l, w, h)
-    | _ -> None
-  in
   let process line =
-    match to_chunk line with
-    | Some (l, w, h) -> Some (int_of_string l, int_of_string w, int_of_string h)
-    | None -> None
+    match String.split_on_char 'x' line with
+    | [ l; w; h ] -> Some (int_of_string l, int_of_string w, int_of_string h)
+    | _ -> None
   in
   input |> Parse.lines_of process
 
