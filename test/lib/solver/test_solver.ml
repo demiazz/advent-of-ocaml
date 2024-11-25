@@ -8,7 +8,14 @@ let test_case_of (year, day, part, expected) =
   let run () = Alcotest.(check string) "are equal" expected (handle ()) in
   (name, [ Alcotest.test_case "OK" `Quick run ])
 
-let answers = [ (2015, 1, 1, "232"); (2015, 1, 2, "1783") ]
+let answers =
+  [
+    (2015, 1, 1, "232");
+    (2015, 1, 2, "1783");
+    (2015, 2, 1, "1598415");
+    (2015, 2, 2, "3812909");
+  ]
+
 let test_cases = answers |> List.map test_case_of
 
 let () =

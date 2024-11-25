@@ -7,7 +7,7 @@ PART=1
 init:
 	opam switch create . 5.2.0 -y --deps-only
 	pnpm install
-	opam install -y . --deps-only --with-dev
+	opam install -y . --deps-only --with-dev --with-test
 	opam exec opam-check-npm-deps
 
 init-ci:
