@@ -6,6 +6,8 @@ let registry =
   |> Registry.add ~year:2015 ~day:2 ~part:2 ~value:Year_2015.Day_02.part_two
   |> Registry.add ~year:2015 ~day:3 ~part:1 ~value:Year_2015.Day_03.part_one
   |> Registry.add ~year:2015 ~day:3 ~part:2 ~value:Year_2015.Day_03.part_two
+  |> Registry.add ~year:2015 ~day:4 ~part:1 ~value:Year_2015.Day_04.part_one
+  |> Registry.add ~year:2015 ~day:4 ~part:2 ~value:Year_2015.Day_04.part_two
 
 let years = Registry.all_years registry
 let days ~year = Registry.all_days ~year registry
