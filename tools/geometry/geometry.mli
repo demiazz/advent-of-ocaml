@@ -1,8 +1,4 @@
-module Int_point_2d : sig
-  type t = int * int
-
-  val compare : t -> t -> int
-  val map : (int -> 'a) -> t -> 'a * 'a
-  val ( + ) : t -> t -> t
-  val ( - ) : t -> t -> t
-end
+module Int_point_2d : Point_2d.S with type c = int
+module Float_point_2d : Point_2d.S with type c = float
+module Int_point_3d : Point_3d.S with type c = int
+module Float_point_3d : Point_3d.S with type c = float
