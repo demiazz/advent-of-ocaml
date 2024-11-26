@@ -42,8 +42,7 @@ let all_years map =
   IntSet.to_list unique_years
 
 let all_days ~year map =
-  let filter_map key =
-    match key with
+  let filter_map = function
     | current_year, day, _ when current_year == year -> Some day
     | _ -> None
   in

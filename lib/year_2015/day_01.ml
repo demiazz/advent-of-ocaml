@@ -1,7 +1,5 @@
 let parse input =
-  let process char =
-    match char with '(' -> Some 1 | ')' -> Some (-1) | _ -> None
-  in
+  let process = function '(' -> Some 1 | ')' -> Some (-1) | _ -> None in
   input |> Parse.chars_of process
 
 let part_one input = input |> parse |> Seq.fold_left ( + ) 0 |> string_of_int

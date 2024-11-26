@@ -1,8 +1,7 @@
 module Point_set = Set.Make (Geometry.Int_point_2d)
 
 let parse input =
-  let to_point char =
-    match char with
+  let to_point = function
     | '^' -> Some (0, 1)
     | 'v' -> Some (0, -1)
     | '>' -> Some (1, 0)
