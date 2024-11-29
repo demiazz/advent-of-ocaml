@@ -1,4 +1,4 @@
-module Point = Geometry.Int_point_2d
+module Point = Point_2d.Make (Int)
 module Point_set = Set.Make (Point)
 
 let parse input =

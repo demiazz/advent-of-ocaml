@@ -1,0 +1,4 @@
+(library
+ (name point_3d)
+ (libraries coordinate)
+ (modes melange native))
