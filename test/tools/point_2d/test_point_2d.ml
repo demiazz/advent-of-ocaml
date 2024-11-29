@@ -31,6 +31,34 @@ let test_equal name left right expected =
   in
   Alcotest.test_case name `Quick run
 
+let test_min_x name left right expected =
+  let run () =
+    let actual = Point.min_x left right in
+    Alcotest.(check int) "are equal" expected actual
+  in
+  Alcotest.test_case name `Quick run
+
+let test_min_y name left right expected =
+  let run () =
+    let actual = Point.min_y left right in
+    Alcotest.(check int) "are equal" expected actual
+  in
+  Alcotest.test_case name `Quick run
+
+let test_max_x name left right expected =
+  let run () =
+    let actual = Point.max_x left right in
+    Alcotest.(check int) "are equal" expected actual
+  in
+  Alcotest.test_case name `Quick run
+
+let test_max_y name left right expected =
+  let run () =
+    let actual = Point.max_y left right in
+    Alcotest.(check int) "are equal" expected actual
+  in
+  Alcotest.test_case name `Quick run
+
 let test_x name initial expected =
   let run () =
     let actual = Point.x initial in
@@ -198,6 +226,66 @@ let () =
           test_equal
             "returns false when y coordinates of both points aren't equal"
             { x = 4; y = 3 } { x = 4; y = 2 } false;
+        ] );
+      ( "min_x : t -> t -> c (x = x)",
+        [
+          test_min_x "returns x coordinate when both are equal" { x = 4; y = 0 }
+            { x = 4; y = 0 } 4;
+        ] );
+      ( "min_x : t -> t -> c (x < x)",
+        [
+          test_min_x "returns left x coordinate when left is lesser"
+            { x = 3; y = 0 } { x = 4; y = 0 } 3;
+        ] );
+      ( "min_x : t -> t -> c (x > x)",
+        [
+          test_min_x "returns right x coordinate when right is lesser"
+            { x = 4; y = 0 } { x = 3; y = 0 } 3;
+        ] );
+      ( "min_y : t -> t -> c (y = y)",
+        [
+          test_min_y "returns y coordinate when both are equal" { x = 0; y = 4 }
+            { x = 0; y = 4 } 4;
+        ] );
+      ( "min_y : t -> t -> c (y < y)",
+        [
+          test_min_y "returns left y coordinate when left is lesser"
+            { x = 0; y = 3 } { x = 0; y = 4 } 3;
+        ] );
+      ( "min_y : t -> t -> c (y > y)",
+        [
+          test_min_y "returns right y coordinate when right is lesser"
+            { x = 0; y = 4 } { x = 0; y = 3 } 3;
+        ] );
+      ( "max_x : t -> t -> c (y = y)",
+        [
+          test_max_x "returns y coordinate when both are equal" { x = 4; y = 0 }
+            { x = 4; y = 0 } 4;
+        ] );
+      ( "max_x : t -> t -> c (y < y)",
+        [
+          test_max_x "returns right y coordinate when left is lesser"
+            { x = 3; y = 0 } { x = 4; y = 0 } 4;
+        ] );
+      ( "max_x : t -> t -> c (y > y)",
+        [
+          test_max_x "returns left y coordinate when right is lesser"
+            { x = 4; y = 0 } { x = 3; y = 0 } 4;
+        ] );
+      ( "max_y : t -> t -> c (y = y)",
+        [
+          test_max_y "returns y coordinate when both are equal" { x = 0; y = 4 }
+            { x = 0; y = 4 } 4;
+        ] );
+      ( "max_y : t -> t -> c (y < y)",
+        [
+          test_max_y "returns right y coordinate when left is lesser"
+            { x = 0; y = 3 } { x = 0; y = 4 } 4;
+        ] );
+      ( "max_y : t -> t -> c (y > y)",
+        [
+          test_max_y "returns left y coordinate when right is lesser"
+            { x = 0; y = 4 } { x = 0; y = 3 } 4;
         ] );
       ( "x         : t -> c",
         [ test_x "returns x coordinate of point" { x = 4; y = 2 } 4 ] );

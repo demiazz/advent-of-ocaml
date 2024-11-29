@@ -6,6 +6,10 @@ module type S = sig
   val create : c -> c -> t
   val compare : t -> t -> int
   val equal : t -> t -> bool
+  val min_x : t -> t -> c
+  val min_y : t -> t -> c
+  val max_x : t -> t -> c
+  val max_y : t -> t -> c
   val x : t -> c
   val y : t -> c
   val ( + ) : t -> c -> t

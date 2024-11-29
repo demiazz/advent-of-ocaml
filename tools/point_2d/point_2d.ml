@@ -6,6 +6,10 @@ module type S = sig
   val create : c -> c -> t
   val compare : t -> t -> int
   val equal : t -> t -> bool
+  val min_x : t -> t -> c
+  val min_y : t -> t -> c
+  val max_x : t -> t -> c
+  val max_y : t -> t -> c
   val x : t -> c
   val y : t -> c
   val ( + ) : t -> c -> t
@@ -39,6 +43,10 @@ end = struct
     match compare left.x right.x with 0 -> compare left.y right.y | r -> r
 
   let equal left right = equal left.x right.x && equal left.y right.y
+  let min_x left right = min left.x right.x
+  let min_y left right = min left.y right.y
+  let max_x left right = max left.x right.x
+  let max_y left right = max left.y right.y
   let ( + ) { x; y } v = { x = add x v; y = add y v }
   let ( - ) { x; y } v = { x = sub x v; y = sub y v }
   let ( * ) { x; y } v = { x = mul x v; y = mul y v }
