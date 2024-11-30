@@ -1,6 +1,6 @@
 module type S = sig
   type c
-  type t = { x : c; y : c }
+  type t
 
   val zero : t
   val create : c -> c -> t

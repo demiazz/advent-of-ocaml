@@ -1,11 +1,17 @@
 module type S = sig
   type c
-  type t = { x : c; y : c; z : c }
+  type t
 
   val zero : t
   val create : c -> c -> c -> t
   val compare : t -> t -> int
   val equal : t -> t -> bool
+  val min_x : t -> t -> c
+  val min_y : t -> t -> c
+  val min_z : t -> t -> c
+  val max_x : t -> t -> c
+  val max_y : t -> t -> c
+  val max_z : t -> t -> c
   val x : t -> c
   val y : t -> c
   val z : t -> c
@@ -46,6 +52,12 @@ end = struct
   let equal left right =
     equal left.x right.x && equal left.y right.y && equal left.z right.z
 
+  let min_x left right = min left.x right.x
+  let min_y left right = min left.y right.y
+  let min_z left right = min left.z right.z
+  let max_x left right = max left.x right.x
+  let max_y left right = max left.y right.y
+  let max_z left right = max left.z right.z
   let ( + ) { x; y; z } v = { x = add x v; y = add y v; z = add z v }
   let ( - ) { x; y; z } v = { x = sub x v; y = sub y v; z = sub z v }
   let ( * ) { x; y; z } v = { x = mul x v; y = mul y v; z = mul z v }
