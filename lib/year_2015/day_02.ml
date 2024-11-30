@@ -5,20 +5,25 @@ let parse input =
     | _ -> None
   in
   input |> Parse.lines_of process
+;;
 
 let pipe f (l, w, h) = l |> f w |> f h
+
 let sum = pipe ( + )
+
 let sum_of f seq = seq |> Seq.map f |> Seq.fold_left ( + ) 0
+
 let total_of f input = input |> parse |> sum_of f |> string_of_int
 
 let part_one input =
   let min = pipe min in
-  let sides_of (l, w, h) = (2 * l * w, 2 * w * h, 2 * h * l) in
+  let sides_of (l, w, h) = 2 * l * w, 2 * w * h, 2 * h * l in
   let square_of gift =
     let sides = sides_of gift in
     sum sides + (min sides / 2)
   in
   input |> total_of square_of
+;;
 
 let part_two input =
   let max = pipe max in
@@ -26,3 +31,4 @@ let part_two input =
   let sides_of gift = (sum gift - max gift) * 2 in
   let ribbon_of gift = sides_of gift + mul gift in
   input |> total_of ribbon_of
+;;

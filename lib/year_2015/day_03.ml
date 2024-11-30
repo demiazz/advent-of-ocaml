@@ -10,13 +10,13 @@ let parse input =
     | _ -> None
   in
   input |> Parse.chars_of to_point
+;;
 
 let visit input move =
   let initial = Point_set.singleton Point.zero in
-  let visited =
-    input |> parse |> Seq.fold_left move initial |> Point_set.cardinal
-  in
+  let visited = input |> parse |> Seq.fold_left move initial |> Point_set.cardinal in
   string_of_int visited
+;;
 
 let part_one input =
   let open Point in
@@ -27,6 +27,7 @@ let part_one input =
     Point_set.add next set
   in
   visit input move
+;;
 
 let part_two input =
   let open Point in
@@ -41,3 +42,4 @@ let part_two input =
     Point_set.add next set
   in
   visit input move
+;;
