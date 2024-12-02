@@ -1,4 +1,4 @@
 (library
  (name solver)
- (libraries reader year_2015)
+ (libraries reader year_2015 year_2024)
  (modes melange native))
