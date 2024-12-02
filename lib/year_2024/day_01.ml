@@ -14,6 +14,9 @@ let parse input =
   input |> Parse.lines_of process
 ;;
 
+(* NOTE: For part one we can not read sequence of pairs, and then convert it
+   to list and sort. I think, we can use sorting tree here, and write
+   to two tries in parallel, and then just count result. *)
 module Part_one = struct
   let split =
     let fold (ls, rs) (l, r) = l :: ls, r :: rs in
