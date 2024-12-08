@@ -12,6 +12,7 @@ init:
 
 init-ci:
 	pnpm install
+	opam update
 	opam install . --deps-only --locked --with-test --yes
 	opam exec opam-check-npm-deps
 
