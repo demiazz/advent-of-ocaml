@@ -7,3 +7,5 @@ end
 module Day_01 : Day
 
 module Day_02 : Day
+
+module Day_03 : Day
