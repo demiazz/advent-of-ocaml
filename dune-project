@@ -38,7 +38,10 @@
    (and
     :build
     (>= 3.0.1)))
-  (ocaml-lsp-server :dev)
+  (ocaml-lsp-server
+   (and
+    :dev
+    (>= 1.20.1)))
   (ocamlformat :dev)
   (dot-merlin-reader :dev)
   (utop :dev)

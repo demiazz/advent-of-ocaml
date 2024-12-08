@@ -6,15 +6,12 @@ let parse input =
   input |> Parse.lines_of process
 ;;
 
-let validate_with_bounds min max =
-  let rec is_valid index = function
-    | [] -> true
-    | _ :: [] -> true
-    | x :: y :: xs ->
-      let diff = x - y in
-      if diff >= min && diff <= max then is_valid (index + 1) (y :: xs) else false
+let validate_with_bounds min max xs =
+  let is_invalid (x, y) =
+    let diff = x - y in
+    diff < min || diff > max
   in
-  is_valid 0
+  xs |> List.to_seq |> Knife.Seq.pairs_of |> Knife.Seq.exists ~f:is_invalid |> not
 ;;
 
 let validate min max xs =
@@ -27,20 +24,15 @@ let validate min max xs =
 ;;
 
 let to_tolerated xs =
-  let remove target = List.filteri (fun index _ -> index <> target) xs in
-  Seq.ints 0 |> Seq.take (List.length xs) |> Seq.map remove
+  let remove target = Knife.List.remove_at ~index:target xs in
+  xs |> Knife.List.indices |> Seq.map remove
 ;;
 
 let check_without_tolerate min max xs = validate min max xs
 
 let check_with_tolerate min max xs =
-  match validate min max xs with
-  | true -> true
-  | false ->
-    let some xxs = Seq.find (fun xs -> validate min max xs) xxs in
-    (match to_tolerated xs |> some with
-     | Some _ -> true
-     | None -> false)
+  let check = check_without_tolerate min max in
+  check xs || to_tolerated xs |> Knife.Seq.exists ~f:check
 ;;
 
 let count min max tolerate input =

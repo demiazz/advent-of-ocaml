@@ -11,9 +11,7 @@ let pipe f (l, w, h) = l |> f w |> f h
 
 let sum = pipe ( + )
 
-let sum_of f seq = seq |> Seq.map f |> Seq.fold_left ( + ) 0
-
-let total_of f input = input |> parse |> sum_of f |> string_of_int
+let total_of f input = input |> parse |> Seq.map f |> Knife.Seq.sum |> string_of_int
 
 let part_one input =
   let min = pipe min in

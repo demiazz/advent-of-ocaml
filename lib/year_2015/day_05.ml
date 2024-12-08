@@ -1,7 +1,6 @@
 module Common = struct
   let dispenser_of item_of string =
-    let length = String.length string in
-    Seq.ints 0 |> Seq.take length |> Seq.map item_of |> Seq.to_dispenser
+    string |> Knife.String.indices |> Seq.map item_of |> Seq.to_dispenser
   ;;
 
   let count_of is_nice input =

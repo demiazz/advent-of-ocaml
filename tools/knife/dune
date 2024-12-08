@@ -1,0 +1,3 @@
+(library
+ (name knife)
+ (modes melange native))

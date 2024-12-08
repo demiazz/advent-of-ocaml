@@ -17,7 +17,7 @@ depends: [
   "reason-react" {>= "0.15.0"}
   "reason-react-ppx" {>= "0.15.0"}
   "opam-check-npm-deps" {build & >= "3.0.1"}
-  "ocaml-lsp-server" {dev}
+  "ocaml-lsp-server" {dev & >= "1.20.1"}
   "ocamlformat" {dev}
   "dot-merlin-reader" {dev}
   "utop" {dev}

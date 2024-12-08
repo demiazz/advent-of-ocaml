@@ -31,7 +31,7 @@ module Part_one = struct
   let sum (left, right) =
     let diff (l, r) = Stdlib.abs (l - r) in
     let pairs = Seq.zip (List.to_seq left) (List.to_seq right) in
-    pairs |> Seq.map diff |> Seq.fold_left Stdlib.( + ) 0
+    pairs |> Seq.map diff |> Knife.Seq.sum
   ;;
 
   let distance input = input |> parse |> split |> sort |> sum |> string_of_int
