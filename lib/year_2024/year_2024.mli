@@ -5,3 +5,5 @@ module type Day = sig
 end
 
 module Day_01 : Day
+
+module Day_02 : Day
