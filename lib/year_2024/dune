@@ -1,4 +1,4 @@
 (library
  (name year_2024)
- (libraries knife parse reader)
+ (libraries knife parse point_2d reader)
  (modes melange native))
