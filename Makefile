@@ -1,6 +1,6 @@
 YEAR=2024
-DAY=5
-PART=2
+DAY=6
+PART=1
 
 .PHONY: init build-native build-web build dev-web run test
 

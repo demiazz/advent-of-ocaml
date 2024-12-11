@@ -16,6 +16,47 @@ module List_suite = struct
       ] )
   ;;
 
+  let test_find_first_opt name xs expected =
+    let is_match x = x > 3 in
+    let run () =
+      Alcotest.(check (option int))
+        "are equal"
+        expected
+        (Knife.List.find_first_opt ~f:is_match xs)
+    in
+    Alcotest.test_case name `Quick run
+  ;;
+
+  let find_first_opt_suite =
+    ( "List.find_first_opt"
+    , [ test_find_first_opt "empty list" [] None
+      ; test_find_first_opt "non empty list without match" [ 1; 2; 3 ] None
+      ; test_find_first_opt
+          "non empty list with match"
+          [ 1; 2; 3; 4; 1; 5; 2; 6 ]
+          (Some 4)
+      ] )
+  ;;
+
+  let test_find_last_opt name xs expected =
+    let is_match x = x > 3 in
+    let run () =
+      Alcotest.(check (option int))
+        "are equal"
+        expected
+        (Knife.List.find_last_opt ~f:is_match xs)
+    in
+    Alcotest.test_case name `Quick run
+  ;;
+
+  let find_last_opt_suite =
+    ( "List.find_last_opt"
+    , [ test_find_last_opt "empty list" [] None
+      ; test_find_last_opt "non empty list without match" [ 1; 2; 3 ] None
+      ; test_find_last_opt "non empty list with match" [ 1; 2; 3; 4; 1; 5; 2; 6 ] (Some 6)
+      ] )
+  ;;
+
   let test_remove_at name index xs expected =
     let run () =
       Alcotest.(check (list int)) "are equal" expected (Knife.List.remove_at ~index xs)
@@ -32,7 +73,9 @@ module List_suite = struct
       ] )
   ;;
 
-  let suites = [ indices_suite; remove_at_suite ]
+  let suites =
+    [ indices_suite; find_first_opt_suite; find_last_opt_suite; remove_at_suite ]
+  ;;
 end
 
 module Seq_suite = struct
@@ -76,6 +119,29 @@ module Seq_suite = struct
     ( "Seq.sum"
     , [ test_sum "empty sequence" Seq.empty 0
       ; test_sum "non empty sequence" (Seq.ints 0 |> Seq.take 4) 6
+      ] )
+  ;;
+
+  let test_fold_lefti name s expected =
+    let run () =
+      let actual =
+        Knife.Seq.fold_lefti
+          ~f:(fun acc index it -> List.cons (index, it) acc)
+          ~initial:[]
+          s
+      in
+      Alcotest.(check (list (pair int int))) "are equal" expected actual
+    in
+    Alcotest.test_case name `Quick run
+  ;;
+
+  let fold_lefti_suite =
+    ( "Seq.fold_lefti"
+    , [ test_fold_lefti "empty sequence" Seq.empty []
+      ; test_fold_lefti
+          "non empty sequence"
+          (List.to_seq [ 1; 2; 3 ])
+          [ 2, 3; 1, 2; 0, 1 ]
       ] )
   ;;
 
@@ -123,7 +189,13 @@ module Seq_suite = struct
   ;;
 
   let suites =
-    [ exists_suite; indices_suite; sum_suite; pairs_of_suite; triples_of_suite ]
+    [ exists_suite
+    ; indices_suite
+    ; sum_suite
+    ; fold_lefti_suite
+    ; pairs_of_suite
+    ; triples_of_suite
+    ]
   ;;
 end
 
@@ -145,7 +217,27 @@ module String_suite = struct
       ] )
   ;;
 
-  let suites = [ indices_suite ]
+  let test_fold_lefti name s expected =
+    let run () =
+      let actual =
+        Knife.String.fold_lefti
+          ~f:(fun acc index char -> List.cons (index, char) acc)
+          ~initial:[]
+          s
+      in
+      Alcotest.(check (list (pair int char))) "are equal" expected actual
+    in
+    Alcotest.test_case name `Quick run
+  ;;
+
+  let fold_lefti_suite =
+    ( "String.fold_lefti"
+    , [ test_fold_lefti "empty string" "" []
+      ; test_fold_lefti "non empty string" "abc" [ 2, 'c'; 1, 'b'; 0, 'a' ]
+      ] )
+  ;;
+
+  let suites = [ indices_suite; fold_lefti_suite ]
 end
 
 let () =
