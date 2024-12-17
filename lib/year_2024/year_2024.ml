@@ -10,3 +10,4 @@ module Day_03 = Day_03
 module Day_04 = Day_04
 module Day_05 = Day_05
 module Day_06 = Day_06
+module Day_07 = Day_07

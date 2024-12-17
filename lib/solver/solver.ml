@@ -22,6 +22,8 @@ let registry =
   |> Registry.add ~year:2024 ~day:5 ~part:2 ~value:Year_2024.Day_05.part_two
   |> Registry.add ~year:2024 ~day:6 ~part:1 ~value:Year_2024.Day_06.part_one
   |> Registry.add ~year:2024 ~day:6 ~part:2 ~value:Year_2024.Day_06.part_two
+  |> Registry.add ~year:2024 ~day:7 ~part:1 ~value:Year_2024.Day_07.part_one
+  |> Registry.add ~year:2024 ~day:7 ~part:2 ~value:Year_2024.Day_07.part_two
 ;;
 
 let years = Registry.all_years registry

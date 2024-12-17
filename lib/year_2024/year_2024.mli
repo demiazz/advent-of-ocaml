@@ -15,3 +15,5 @@ module Day_04 : Day
 module Day_05 : Day
 
 module Day_06 : Day
+
+module Day_07 : Day
